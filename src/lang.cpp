@@ -14,15 +14,12 @@ std::vector<std::string> ZapLang::Compile(std::string filePath) {
 
 	std::string str;
 
-	if (file.is_open()) {
-		std::cout << "Could not open file " + filePath + ".";
-		return toReturn;
+	if (!file.is_open()) {
+		std::cout << "Could not open file " + filePath + ".\n";
 	}
 			
 	while (std::getline(file, str)) {
-		std::cout << str;
-
-		toReturn.push_back(str);
+		toReturn.push_back(CompileLine(str));
 	}
 
 	file.close();
